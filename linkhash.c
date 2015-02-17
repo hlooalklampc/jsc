@@ -17,7 +17,17 @@
 #include <stddef.h>
 #include <limits.h>
 
+#ifdef HAVE_ENDIAN_H
+# include <endian.h>    /* attempt to define endianness */
+#endif
+
 #include "linkhash.h"
+#include "json_inttypes.h"
+
+#ifdef _MSC_VER
+#define WIN32_MEAN_AND_LEAN
+#include <Windows.h>
+#endif
 
 void lh_abort(const char *msg, ...)
 {
