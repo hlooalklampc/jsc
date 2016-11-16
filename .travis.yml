@@ -4,23 +4,22 @@ os:linux
 language: c
 
 compiler:gcc
-
-
 addons:
     apt:
         packages:
-            - libonig-dev
-            - valgrind
-            - bison
-
+            - libtool
+            - autoconf
+            - automake
+            - make
 
 install:
     
 before_script:
-    - ./configure YACC="$(which bison) -y" $COVERAGE
+    - sh autogen.sh
+    - ./configure
 
 script:
     # When using the bison from Debian we need to tell that bison where
-    # to find its data.  Yay non-relocatable code.  Not.
+    # to e code.  Not.
     - make -j4
     - make check -j4
