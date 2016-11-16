@@ -1,9 +1,9 @@
-os:linux
+os: linux
 
 
 language: c
 
-compiler:gcc
+compiler: gcc
 addons:
     apt:
         packages:
