@@ -1,0 +1,26 @@
+os:linux
+
+
+language: c
+
+compiler:gcc
+
+
+addons:
+    apt:
+        packages:
+            - libonig-dev
+            - valgrind
+            - bison
+
+
+install:
+    
+before_script:
+    - ./configure YACC="$(which bison) -y" $COVERAGE
+
+script:
+    # When using the bison from Debian we need to tell that bison where
+    # to find its data.  Yay non-relocatable code.  Not.
+    - make -j4
+    - make check -j4
